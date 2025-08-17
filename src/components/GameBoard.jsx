@@ -6,7 +6,7 @@ const initGameBoard = [
     [null, null, null],
 ];
 
-export default function GameBoard() {
+export default function GameBoard({ onCellClick, currentPlayerSymbol }) {
     const [gameBoard, setGameBoard] = useState(initGameBoard);
 
     function handleCellClick(rowIndex, colIndex) {
@@ -15,6 +15,8 @@ export default function GameBoard() {
             newGameBoard[rowIndex][colIndex] = 'X'; // or 'O', depending on the current player
             return newGameBoard;
         });
+
+        onCellClick()
     }
 
     return (
