@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 
 const initGameBoard = [
     [null, null, null],
@@ -6,18 +5,23 @@ const initGameBoard = [
     [null, null, null],
 ];
 
-export default function GameBoard({ onCellClick, currentPlayerSymbol }) {
-    const [gameBoard, setGameBoard] = useState(initGameBoard);
+export default function GameBoard({ onCellClick, turns }) {
+    // const [gameBoard, setGameBoard] = useState(initGameBoard);
 
-    function handleCellClick(rowIndex, colIndex) {
-        setGameBoard((prevGameBoard) => {
-            const newGameBoard = [...prevGameBoard.map(innerArray => [...innerArray])];
-            newGameBoard[rowIndex][colIndex] = 'X'; // or 'O', depending on the current player
-            return newGameBoard;
-        });
+    // function handleCellClick(rowIndex, colIndex) {
+    //     setGameBoard((prevGameBoard) => {
+    //         const newGameBoard = [...prevGameBoard.map(innerArray => [...innerArray])];
+    //         newGameBoard[rowIndex][colIndex] = currentPlayerSymbol;
+    //         return newGameBoard;
+    //     });
 
-        onCellClick()
-    }
+    //     onCellClick()
+    // }
+    let gameBoard = initGameBoard;
+    turns.forEach(turn => {
+        const { square, player } = turn;
+        gameBoard[square.row][square.col] = player;
+    });
 
     return (
         <ol id="game-board">
@@ -26,7 +30,7 @@ export default function GameBoard({ onCellClick, currentPlayerSymbol }) {
                     <ol>
                         {row.map((cell, colIndex) => (
                             <li key={colIndex}>
-                                <button onClick={() => handleCellClick(rowIndex, colIndex)}>{cell}</button>
+                                <button onClick={() => onCellClick(rowIndex, colIndex)}>{cell}</button>
                             </li>
                         ))}
                     </ol>
