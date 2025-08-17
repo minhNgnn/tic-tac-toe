@@ -21,7 +21,7 @@ function deriveActivePlayer(gameTurns) {
   return currentPlayer;
 }
 
-function checkForWinner(gameTurns, gameBoard) {
+function checkForWinner(gameBoard) {
   
   for (const combination of WINNING_COMBINATIONS) {
     const firstSquare = gameBoard[combination[0].row][combination[0].col];
@@ -35,6 +35,10 @@ function checkForWinner(gameTurns, gameBoard) {
   return null;
 }
 
+function checkDraw(gameTurns, winner) {
+  return gameTurns.length === 9 && !winner;
+}
+
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
   const currentPlayer = deriveActivePlayer(gameTurns);
@@ -46,7 +50,7 @@ function App() {
       gameBoard[square.row][square.col] = player;
   });
 
-  let winner = checkForWinner(gameTurns, gameBoard);
+  let winner = checkForWinner(gameBoard);
 
   function handleCellClick(rowIndex, colIndex) {
     setGameTurns((prevTurns) => {
@@ -68,7 +72,7 @@ function App() {
           <Player initialName="Player 1" symbol="X" isActive={currentPlayer === "X"} />
           <Player initialName="Player 2" symbol="O" isActive={currentPlayer === "O"} />
         </ol>
-        {winner && <GameOver winner={winner} />}
+        {(winner || checkDraw(gameTurns, winner)) && <GameOver winner={winner} />}
         <GameBoard onCellClick={handleCellClick} board={gameBoard} />
       </div>
       <Log turns={gameTurns} />
