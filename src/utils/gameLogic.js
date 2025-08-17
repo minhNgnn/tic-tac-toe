@@ -1,5 +1,5 @@
-import { WINNING_COMBINATIONS } from './winning-combinations.js';
-import { INITIAL_GAME_BOARD } from './constants.js';
+import { WINNING_COMBINATIONS } from '../data/winning-combinations.js';
+import { INITIAL_GAME_BOARD } from '../constants/index.js';
 
 export function deriveActivePlayer(gameTurns) {
   let currentPlayer = 'X'

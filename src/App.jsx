@@ -3,13 +3,13 @@ import GameBoard from "./components/GameBoard.jsx";
 import Log from "./components/Log.jsx";
 import GameOver from "./components/GameOver.jsx";
 import { useState } from "react";
-import { PLAYERS } from './constants.js';
+import { PLAYERS } from './constants/index.js';
 import { 
   deriveActivePlayer, 
   checkForWinner, 
   checkDraw, 
   deriveGameBoard 
-} from './gameLogic.js';
+} from './utils/gameLogic.js';
 
 function App() {
   const [playerNames, setPlayerNames] = useState(PLAYERS);
