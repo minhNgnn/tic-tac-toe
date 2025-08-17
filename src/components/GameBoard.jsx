@@ -6,17 +6,6 @@ const initGameBoard = [
 ];
 
 export default function GameBoard({ onCellClick, turns }) {
-    // const [gameBoard, setGameBoard] = useState(initGameBoard);
-
-    // function handleCellClick(rowIndex, colIndex) {
-    //     setGameBoard((prevGameBoard) => {
-    //         const newGameBoard = [...prevGameBoard.map(innerArray => [...innerArray])];
-    //         newGameBoard[rowIndex][colIndex] = currentPlayerSymbol;
-    //         return newGameBoard;
-    //     });
-
-    //     onCellClick()
-    // }
     let gameBoard = initGameBoard;
     turns.forEach(turn => {
         const { square, player } = turn;
